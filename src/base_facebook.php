@@ -806,12 +806,11 @@ abstract class BaseFacebook
     }
 
     $response_params = array();
-    parse_str($access_token_response, $response_params);
-    if (!isset($response_params['access_token'])) {
+    $response = json_decode($access_token_response);
+    if (!isset($response->access_token)) {
       return false;
     }
-
-    return $response_params['access_token'];
+    return $response->access_token;
   }
 
   /**
